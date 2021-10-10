@@ -1,0 +1,13 @@
+name: UserEvents
+main: com.jbouchier.fork.userevents.UserEvents
+version: 1.0
+api-version: 1.17
+commands:
+  fly:
+    description: "Toggle Fly"
+  god:
+    description: "Toggle God"
+  heal:
+    description: "Heal Yourself"
+  feed:
+    description: "Feed Yourself"
