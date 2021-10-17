@@ -20,6 +20,11 @@ public final class God extends CmdTarget {
         boolean enabled = !compatibility.isInvulnerable(target);
         compatibility.setInvulnerable(target, enabled);
 
+        if (enabled) {
+            target.setHealth(compatibility.getMaxHealth(target));
+            target.setFoodLevel(20);
+        }
+
         if (cs == target) cs.sendMessage((enabled ? Messages.GOD_ENABLED_SELF : Messages.GOD_DISABLED_SELF).toString());
         else {
             cs.sendMessage(

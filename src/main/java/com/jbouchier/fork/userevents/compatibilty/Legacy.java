@@ -1,10 +1,13 @@
 package com.jbouchier.fork.userevents.compatibilty;
 
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashSet;
@@ -23,14 +26,21 @@ public class Legacy implements UtilPlayer, Listener {
         evt.setCancelled(god.contains(evt.getEntity().getUniqueId()));
     }
 
-    @Override
-    public void setInvulnerable(Player player, boolean value) {
-        if (value) god.add(player.getUniqueId());
-        else god.remove(player.getUniqueId());
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+    private void onTarget(EntityTargetLivingEntityEvent evt) {
+        if (evt.getTarget() != null && evt.getEntity() instanceof Monster)
+            evt.setCancelled(god.contains(evt.getTarget().getUniqueId()));
     }
 
     @Override
-    public boolean isInvulnerable(Player player) {
+    public void setInvulnerable(Player player, boolean value) {
+        if (value) {
+            god.add(player.getUniqueId());
+        } else god.remove(player.getUniqueId());
+    }
+
+    @Override
+    public boolean isInvulnerable(HumanEntity player) {
         return god.contains(player.getUniqueId());
     }
 

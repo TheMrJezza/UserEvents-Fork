@@ -5,6 +5,10 @@ import com.jbouchier.fork.userevents.compatibilty.Default;
 import com.jbouchier.fork.userevents.compatibilty.Legacy;
 import com.jbouchier.fork.userevents.compatibilty.UtilPlayer;
 import com.jbouchier.fork.userevents.config.Language;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class UserEvents extends JavaPlugin {
@@ -26,5 +30,12 @@ public class UserEvents extends JavaPlugin {
         new God(this, util);
         new Fly(this);
         new UEReload(this);
+
+        getServer().getPluginManager().registerEvents(new Listener() {
+            @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+            private void onPlayerStarve(FoodLevelChangeEvent evt) {
+                evt.setCancelled(util.isInvulnerable(evt.getEntity()));
+            }
+        }, this);
     }
 }

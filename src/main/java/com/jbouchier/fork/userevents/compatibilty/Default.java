@@ -2,6 +2,7 @@ package com.jbouchier.fork.userevents.compatibilty;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 
 public class Default implements UtilPlayer {
@@ -12,7 +13,7 @@ public class Default implements UtilPlayer {
     }
 
     @Override
-    public boolean isInvulnerable(Player player) {
+    public boolean isInvulnerable(HumanEntity player) {
         return player.isInvulnerable();
     }
 
