@@ -1,7 +1,6 @@
-package com.jbouchier.fork.userevents;
+package com.jbouchier.fork.userevents.config;
 
 import org.bukkit.ChatColor;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public enum Messages {
     NO_PERMISSION, RELOAD_PLUGIN, INVALID_PLAYER, TARGET_NOT_PROVIDED,
@@ -32,15 +31,3 @@ public enum Messages {
     }
 }
 
-final class Language extends BaseYaml {
-    static final Language INSTANCE = new Language();
-
-    private Language() {
-        super("language.yml", JavaPlugin.getPlugin(UserEvents.class));
-    }
-
-    @Override
-    protected void onReload() {
-        for (Messages msg : Messages.values()) msg.readMessage(this);
-    }
-}

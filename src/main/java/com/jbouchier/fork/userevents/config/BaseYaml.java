@@ -1,4 +1,4 @@
-package com.jbouchier.fork.userevents;
+package com.jbouchier.fork.userevents.config;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;

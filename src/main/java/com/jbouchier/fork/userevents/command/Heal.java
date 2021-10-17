@@ -1,21 +1,23 @@
 package com.jbouchier.fork.userevents.command;
 
-import com.jbouchier.fork.userevents.Messages;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
+import com.jbouchier.fork.userevents.compatibilty.UtilPlayer;
+import com.jbouchier.fork.userevents.config.Messages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Heal extends BaseCommand {
+public final class Heal extends CmdTarget {
 
-    public Heal() {
-        super("heal");
+    private final UtilPlayer compatibility;
+
+    public Heal(JavaPlugin plugin, UtilPlayer compatibility) {
+        super(plugin, "heal");
+        this.compatibility = compatibility;
     }
 
     @Override
     protected void onExecute(CommandSender cs, Player target) {
-        AttributeInstance max = target.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        target.setHealth(max == null ? 20 : max.getDefaultValue());
+        target.setHealth(compatibility.getMaxHealth(target));
         target.setFoodLevel(20);
         if (cs == target) cs.sendMessage(Messages.HEAL_SELF.toString());
         else {

@@ -1,13 +1,14 @@
 package com.jbouchier.fork.userevents.command;
 
-import com.jbouchier.fork.userevents.Messages;
+import com.jbouchier.fork.userevents.config.Messages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Feed extends BaseCommand {
+public final class Feed extends CmdTarget {
 
-    public Feed() {
-        super("feed");
+    public Feed(JavaPlugin plugin) {
+        super(plugin, "feed");
     }
 
     @Override
