@@ -7,7 +7,7 @@ Improvments include:
 - Cached Configuration.
 - Support for Minecraft versions <= 1.8, although newer is considered first-class.
 - Abstraction to eliminate code duplication.
-- All "Player Based" commands (/fly /god /heal /feed) have full "Other Player" support. i.e /<command> {Target}
+- All "Player Based" commands (/fly /god /heal /feed) have full "Other Player" support. i.e /&lt;command&gt; {Target}
 - Restructure and Reformat language configuration file to remove unnecessary Lists.
 - Streamlined plugin.yml
 
